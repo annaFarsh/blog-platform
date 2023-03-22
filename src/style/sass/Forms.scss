@@ -1,0 +1,71 @@
+.sign-up{
+  position: absolute;
+  width: 320px;
+  height: 599px;
+  top:100px;
+  left: 30%;
+  background-color: white;
+  padding: 32px;
+  box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
+  border-radius: 4px;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.label{
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.86rem;
+padding: 0 0 12px 0;
+}
+.form__input{
+height: 40px;
+  border: 1px solid #BFBFBF;
+  border-radius: 4px;
+  margin:0;
+  padding: 0 0 0 10px;
+}
+.form__error>p{
+  margin:0;
+  padding:0;
+  color: red;
+  font-size: 0.86rem;
+}
+.label__checkbox{
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #BFBFBF;
+  padding: 10px 0 10px 0;
+  font-size: 0.86rem;
+}
+.checkbox{
+  width: 16px;
+  padding: 0;
+  margin: 0 10px 12px 0 ;
+}
+.input--repeat-password{
+  margin-bottom: 20px;
+}
+.form__button{
+  width: 319px;
+  height:40px;
+  background-color: #1890FF;
+  color: white;
+  border-radius: 4px;
+}
+.sign-up__h1{
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 500;
+}
+.link--sign{
+  font-size: 0.76rem;
+  text-align: center;
+  color: #BFBFBF;
+}
+.link-sign > a{
+  color: #1890FF;
+}
