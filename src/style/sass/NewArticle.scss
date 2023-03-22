@@ -1,0 +1,30 @@
+.new-article {
+  position: relative;
+  width: 65vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  background-color: white;
+  margin: 40px 0 10px 0;
+  font-size: 0.8rem;
+  box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
+  padding: 32px;
+}
+.new-article__h1 {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 500;
+}
+.tag {
+  display: flex;
+  flex-direction: row;
+}
+.tag__text {
+  width: 162px;
+  height: 20px;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  margin: 0;
+  padding: 10px 0 10px 10px;
+}

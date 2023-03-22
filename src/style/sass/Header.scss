@@ -1,0 +1,83 @@
+.header {
+  background-color: white;
+  box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+  font-size: 1.2rem;
+}
+.header.link > a {
+  text-align: center;
+  vertical-align: center;
+}
+.create-article-link {
+  margin: 25px 0 25px 0;
+}
+.header-link {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: center;
+}
+.header__info-panel {
+  display: flex;
+  align-items: center;
+  vertical-align: center;
+  margin-right: 22px;
+}
+
+.header__username {
+  cursor: pointer;
+  display: flex;
+  padding: 30px;
+}
+.header__username:hover {
+  transform: scale(1.03);
+  transition: scale 0.2s;
+}
+
+.header__avatar {
+  width: auto;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+.header__avatar > img {
+  translate: 10px -12px;
+}
+.header__text {
+  margin-left: 22px;
+}
+.sign-in-link,
+.sign-up-link {
+  width: 109px;
+  height: 51px;
+}
+.sign-up-link {
+  color: #52c41a;
+  border: 1px solid #52c41a;
+}
+.login-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.button--logout {
+  width: 109px;
+  height: 51px;
+  text-align: center;
+  align-self: center;
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  margin: 15px;
+  cursor: pointer;
+}
+.button--logout:hover {
+  transform: scale(1.03);
+  transition: scale 0.2s;
+}

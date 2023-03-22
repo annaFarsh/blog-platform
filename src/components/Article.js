@@ -1,22 +1,24 @@
 import { formatDate } from "../services/formatDate";
 import UserAvatar from "../img/UserAvatar.svg";
 import ReactMarkdown from "react-markdown";
-
+import uuid from "react-uuid";
 function Article({ article }) {
-  const { author, body, createdAt, tagList, title } = article;
+  const { author, body, description, createdAt, tagList, title } = article;
   return (
     <div className="article">
       <div className="article-path">
         <div className="article-path__title">{title}</div>
+
         <div className="article-path__tags">
-          {tagList.slice(0, 20).map((tag, index) => {
+          {tagList.slice(0, 20).map((tag) => {
             return (
-              <span key={`${new Date().toISOString()}1${index}`} className="tag">
+              <span key={uuid()} className="tag">
                 {tag}
               </span>
             );
           })}
         </div>
+        <div className="article-path__description">{description}</div>
         <div className="article-path__text">
           <ReactMarkdown>{body}</ReactMarkdown>
         </div>
