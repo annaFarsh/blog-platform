@@ -4,6 +4,7 @@ const baseURL = `https://blog.kata.academy/api`;
 const registerNewUser = createAsyncThunk(
   "user/registerNewUser",
   async function ({ username, email, password }, { rejectWithValue }) {
+
     const newUser = {
       user: {
         username: username,

@@ -4,9 +4,11 @@ import { registerNewUser } from "../API/fetchRequestUser";
 import { useDispatch, useSelector } from "react-redux";
 import { rulesValidationForms } from "../services/rulesValidationForms";
 function SignUp() {
+
   const { usernameRules, passwordRules, emailRules } = rulesValidationForms;
   const dispatch = useDispatch();
   const reg = useSelector((state) => state.user.register);
+  const error = useSelector((state) => state.user.error);
   const {
     register,
     watch,
@@ -18,7 +20,7 @@ function SignUp() {
   });
   const onSubmit = (data) => {
     const { username, email, password } = data;
-    dispatch(registerNewUser({ username, email, password }));
+    dispatch(registerNewUser({ username, email, password })).then(()=> reset())
   };
   return (
     <div className="form--wrapper">
@@ -91,17 +93,8 @@ function SignUp() {
       <p className="link--sign">
         Already have an account? <Link to="/sign-in">Sign In</Link>
       </p>
-      {reg === "success" && reset() && (
-        <div>
-          Registration was successful!
-          <p className="link--sign">
-            Now you can Log In{" "}
-            <Link className="link--blue" to="/sign-in">
-              Sign In
-            </Link>
-          </p>
-        </div>
-      )}
+      {error === 422 && <div className='error422'>Username or Email is already taken</div>}
+      {reg === 'success' && <div className='success'>Success! You may Sign In</div>}
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "../API/fetchRequestUser";
 import { useDispatch, useSelector } from "react-redux";
 import { rulesValidationForms } from "../services/rulesValidationForms";
-import { message } from "antd";
 function SignIn() {
   const { passwordRules, emailRules } = rulesValidationForms;
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ function SignIn() {
               {...register("password", passwordRules)}
             />
           </label>
-          {error === 422 && message.error("Invalid Email or Password")}
+          {error === 422 && <div className='error422'>Invalid Email or Password</div>}
           <p>
             <input
               className="button form__button form__button--submit"
