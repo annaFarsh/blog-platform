@@ -3,6 +3,10 @@ import {
   getArticles,
   getOneArticle,
   createArticle,
+  addFavorite,
+  deleteFavorite,
+  updateArticle,
+  deleteArticle,
 } from "../API/fetchRequestArticles";
 import uuid from "react-uuid";
 
@@ -15,8 +19,16 @@ const articleSlice = createSlice({
     articlesCount: 0,
     article: null,
     tags: [],
+    currentPage: 1,
+    toggleFavorite: 1,
+    articleWasDeleted: false,
+    articleEdit: false,
+    updateArticle: false,
   },
   reducers: {
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
     setTag(state, action) {
       const value = action.payload.valueInput;
       const id = uuid();
@@ -26,6 +38,9 @@ const articleSlice = createSlice({
     deleteTag(state, action) {
       state.tags = [...state.tags.filter((tag) => tag.id !== action.payload)];
     },
+    resetError(state, action) {
+      state.error = "null";
+    },
   },
   extraReducers: {
     [getArticles.pending]: (state) => {
@@ -33,6 +48,9 @@ const articleSlice = createSlice({
       state.error = "null";
     },
     [getArticles.fulfilled]: (state, action) => {
+      state.articleEdit = false;
+      state.articleWasDeleted = false;
+      state.updateArticle = false;
       state.status = "ok";
       state.error = "null";
       state.articles = [...action.payload.articles];
@@ -47,6 +65,9 @@ const articleSlice = createSlice({
       state.error = "null";
     },
     [getOneArticle.fulfilled]: (state, action) => {
+      state.articleEdit = false;
+      state.articleWasDeleted = false;
+      state.updateArticle = false;
       state.status = "ok";
       state.error = "null";
       state.article = action.payload.article;
@@ -62,12 +83,68 @@ const articleSlice = createSlice({
     [createArticle.fulfilled]: (state) => {
       state.status = "ok";
       state.error = "null";
+      state.articleEdit = true;
     },
     [createArticle.rejected]: (state, action) => {
+      state.status = "reject";
+      state.error = action.payload;
+    },
+    [addFavorite.pending]: (state) => {
+      state.status = "loading";
+      state.error = "null";
+    },
+    [addFavorite.fulfilled]: (state) => {
+      state.status = "ok";
+      state.error = "null";
+      state.toggleFavorite += 1;
+    },
+    [addFavorite.rejected]: (state, action) => {
+      state.status = "reject";
+      state.error = action.payload;
+    },
+    [deleteFavorite.pending]: (state) => {
+      state.status = "loading";
+      state.error = "null";
+    },
+    [deleteFavorite.fulfilled]: (state) => {
+      state.status = "ok";
+      state.error = "null";
+      state.toggleFavorite += 1;
+    },
+    [deleteFavorite.rejected]: (state, action) => {
+      state.status = "reject";
+
+      state.error = action.payload;
+    },
+    [updateArticle.pending]: (state) => {
+      state.status = "loading";
+      state.error = "null";
+    },
+    [updateArticle.fulfilled]: (state, action) => {
+      state.status = "ok";
+      state.error = "null";
+      state.updateArticle = true;
+    },
+    [updateArticle.rejected]: (state, action) => {
+      state.status = "reject";
+      state.error = action.payload;
+    },
+    [deleteArticle.pending]: (state) => {
+      state.status = "loading";
+      state.error = "null";
+    },
+    [deleteArticle.fulfilled]: (state, action) => {
+      state.status = "ok";
+      state.error = "null";
+      state.articleWasDeleted = true;
+    },
+    [deleteArticle.rejected]: (state, action) => {
+      console.log(action.payload);
       state.status = "reject";
       state.error = action.payload;
     },
   },
 });
 export default articleSlice.reducer;
-export const { setTag, deleteTag } = articleSlice.actions;
+export const { setTag, deleteTag, setCurrentPage, resetError } =
+  articleSlice.actions;

@@ -1,7 +1,6 @@
 .input--repeat-password {
   margin-bottom: 20px;
 }
-
 .label__checkbox {
   display: flex;
   flex-direction: row;
@@ -13,4 +12,7 @@
   width: 16px;
   padding: 0;
   margin: 0 10px 12px 0;
+}
+.link--sign > a {
+  color: #1890ff;
 }

@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "../API/fetchRequestUser";
 import { useDispatch, useSelector } from "react-redux";
 import { rulesValidationForms } from "../services/rulesValidationForms";
+import { message } from "antd";
 function SignIn() {
   const { passwordRules, emailRules } = rulesValidationForms;
   const dispatch = useDispatch();
   const login = useSelector((state) => state.user.login);
+  const error = useSelector((state) => state.user.error);
   const location = useLocation();
   const fromPage = location.state?.from?.pathname || "/";
   const {
@@ -41,6 +43,7 @@ function SignIn() {
               {...register("password", passwordRules)}
             />
           </label>
+          {error === 422 && message.error("Invalid Email or Password")}
           <p>
             <input
               className="button form__button form__button--submit"
@@ -50,7 +53,10 @@ function SignIn() {
           </p>
         </form>
         <p className="link--sign">
-          Don’t have an account? <Link to="/sign-up">Sign Up</Link>
+          Don’t have an account?{" "}
+          <Link className="link--blue" to="/sign-up">
+            Sign Up
+          </Link>
         </p>
       </div>
     );

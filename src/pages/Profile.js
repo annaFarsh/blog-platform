@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { updateUser } from "../API/fetchRequestUser";
 import { useDispatch, useSelector } from "react-redux";
 import { rulesValidationForms } from "../services/rulesValidationForms";
+import { message } from "antd";
 
 function Profile() {
   const { usernameRules, passwordRules, emailRules, imageRules } =
@@ -9,6 +10,7 @@ function Profile() {
   const { value: funcValidImage, message: errorImage } = imageRules;
   const username = useSelector((state) => state.user.username);
   const email = useSelector((state) => state.user.email);
+  const image = useSelector((state) => state.user.image);
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const {
@@ -16,11 +18,19 @@ function Profile() {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm({
+    defaultValues: {
+      username: username,
+      email: email,
+      image: image,
+    },
     mode: "onBlur",
   });
   const onSubmit = (data) => {
     const { username, email, password, image } = data;
-    dispatch(updateUser({ username, email, password, image, token }));
+    dispatch(updateUser({ username, email, password, image, token })).then(
+      () => message.success("The Profile was updated!"),
+      () => message.error("Server Error")
+    );
   };
   return (
     <div className="form--wrapper">

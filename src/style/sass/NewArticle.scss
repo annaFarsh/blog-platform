@@ -1,4 +1,5 @@
-.new-article {
+.new-article,
+.edit-article {
   position: relative;
   width: 65vw;
   height: auto;
@@ -11,7 +12,8 @@
   box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
   padding: 32px;
 }
-.new-article__h1 {
+.new-article__h1,
+.edit-article__h1 {
   font-size: 1.3rem;
   text-align: center;
   font-weight: 500;

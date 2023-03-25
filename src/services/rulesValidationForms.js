@@ -34,4 +34,14 @@ export const rulesValidationForms = {
     value: checkValidUrlImage,
     message: messagesErrorsValid.isImage,
   },
+  articleRules: {
+    required: messagesErrorsValid.isRequired,
+  },
+  titleRules: {
+    required: messagesErrorsValid.isRequired,
+    maxLength: {
+      value: 5000,
+      message: messagesErrorsValid.isTitle,
+    },
+  },
 };

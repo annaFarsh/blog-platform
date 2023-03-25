@@ -18,6 +18,7 @@ const userSlice = createSlice({
     status: "",
     login: false,
     register: "none",
+    loginChecked: false,
   },
   reducers: {
     logoutUser(state) {
@@ -29,6 +30,7 @@ const userSlice = createSlice({
       state.token = "";
     },
     checkLogin(state) {
+      state.loginChecked = true;
       if (checkLoginLS() !== null) {
         let { username, email, token, image } = checkLoginLS();
         state.username = username;
@@ -105,4 +107,4 @@ const userSlice = createSlice({
   },
 });
 export default userSlice.reducer;
-export const { logoutUser } = userSlice.actions;
+export const { logoutUser, checkLogin } = userSlice.actions;

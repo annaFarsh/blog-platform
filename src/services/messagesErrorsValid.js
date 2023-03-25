@@ -6,4 +6,5 @@ export const messagesErrorsValid = {
   maxUsername: "maximum 20 characters",
   minUsername: "minimum 3 characters",
   isImage: "incorrect image URL",
+  isTitle: "maximum 5000 characters",
 };

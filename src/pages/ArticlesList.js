@@ -1,37 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getArticles } from "../API/fetchRequestArticles";
 import { useDispatch, useSelector } from "react-redux";
 import Article from "../components/Article";
 import { Pagination } from "antd";
-import { Link } from "react-router-dom";
+import uuid from "react-uuid";
+import { setCurrentPage } from "../store/articleSlice";
+import { checkLogin } from "../store/userSlice";
 function ArticlesList() {
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.articles);
   const articlesCount = useSelector((state) => state.articles.articlesCount);
-  const [offset, setOffset] = useState(0);
+  const loginChecked = useSelector((state) => state.articles.loginChecked);
+  const currentPage = useSelector((state) => state.articles.currentPage);
+  const token = useSelector((state) => state.user.token);
+  const toggleFavorite = useSelector((state) => state.articles.toggleFavorite);
 
   useEffect(() => {
-    dispatch(getArticles({ limit: 5, offset: offset }));
-  }, [dispatch, offset]);
+    dispatch(checkLogin());
+
+    dispatch(
+      getArticles({ limit: 5, offset: (currentPage - 1) * 5, token: token })
+    );
+  }, [dispatch, currentPage, loginChecked, token, toggleFavorite]);
+
   return (
     <div className="articles">
-      {articles.map((article, index) => {
+      {articles.map((article) => {
         return (
-          <Link
-            to={`/articles/${article.slug}`}
-            key={`${new Date().toISOString()}1${index}1${article.slug}`}
-            className="article--preview"
-          >
-            <Article article={article} />
-          </Link>
+          <div key={uuid()} className="article--preview">
+            {article && <Article article={article} />}
+          </div>
         );
       })}
       {articles.length !== 0 && (
         <Pagination
+          current={currentPage}
           className="pagination"
           total={articlesCount * 2}
           onChange={(num) => {
-            setOffset((num - 1) * 5);
+            dispatch(setCurrentPage(num));
           }}
         />
       )}

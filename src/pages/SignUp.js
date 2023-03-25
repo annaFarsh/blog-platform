@@ -95,7 +95,10 @@ function SignUp() {
         <div>
           Registration was successful!
           <p className="link--sign">
-            Now you can Log In <Link to="/sign-in">Sign In</Link>
+            Now you can Log In{" "}
+            <Link className="link--blue" to="/sign-in">
+              Sign In
+            </Link>
           </p>
         </div>
       )}

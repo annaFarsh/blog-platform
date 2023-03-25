@@ -3,16 +3,27 @@ import { useEffect } from "react";
 import { getOneArticle } from "../API/fetchRequestArticles";
 import Article from "../components/Article";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 function SingleArticle() {
   const dispatch = useDispatch();
   const article = useSelector((state) => state.articles.article);
+  const token = useSelector((state) => state.user.token);
+  const toggleFavorite = useSelector((state) => state.articles.toggleFavorite);
   const { slug } = useParams();
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const fromPage = location.state?.from?.pathname || "/";
+  const articleWasDeleted = useSelector(
+    (state) => state.articles.articleWasDeleted
+  );
   useEffect(() => {
-    dispatch(getOneArticle(slug));
-  }, [dispatch, slug]);
+    if (articleWasDeleted === true) {
+      navigate(fromPage, { replace: true });
+    }
+  }, [articleWasDeleted, navigate, fromPage]);
+  useEffect(() => {
+    dispatch(getOneArticle({ slug, token }));
+  }, [dispatch, slug, token, toggleFavorite]);
   return <>{article && <Article article={article} />}</>;
 }
 export default SingleArticle;

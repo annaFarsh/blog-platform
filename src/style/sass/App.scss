@@ -4,6 +4,7 @@ body {
   padding: 0;
   min-height: 100%;
   background-color: #ebeef3;
+  width: 100vw;
 }
 a {
   text-decoration: none;
@@ -21,4 +22,22 @@ a {
 .footer {
   position: fixed;
   bottom: 0;
+}
+.not-found-page,
+.not-access-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  margin: auto;
+  padding-top: 40px;
+}
+.not-found-page > div,
+.not-access-page > div {
+  padding: 20px;
+}
+.content {
+  position: relative;
 }

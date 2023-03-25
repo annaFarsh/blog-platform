@@ -3,18 +3,28 @@
   box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100vw;
   height: 80px;
   font-size: 1.2rem;
 }
-.header.link > a {
+.header > a {
   text-align: center;
   vertical-align: center;
 }
-.create-article-link {
-  margin: 25px 0 25px 0;
+.button--home {
+  translate: 20px;
+}
+.button--home:hover,
+.button--sign-in:hover {
+  border: 1px solid #bfbfbf;
+  border-radius: 4px;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 .header-link {
+  margin: 25px 0 25px 0;
+}
+.header-button {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -28,37 +38,26 @@
   margin-right: 22px;
 }
 
-.header__username {
-  cursor: pointer;
+.header__profile {
   display: flex;
-  padding: 30px;
-}
-.header__username:hover {
-  transform: scale(1.03);
-  transition: scale 0.2s;
-}
+  flex-direction: row;
+  width: 150px;
 
-.header__avatar {
-  width: auto;
-  border: none;
-  background-color: inherit;
-  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
-.header__avatar > img {
-  translate: 10px -12px;
+.header__profile:hover {
+  cursor: pointer;
 }
 .header__text {
-  margin-left: 22px;
+  padding-left: 22px;
 }
-.sign-in-link,
-.sign-up-link {
+.button--sign-up,
+.button--sign-in {
   width: 109px;
   height: 51px;
 }
-.sign-up-link {
-  color: #52c41a;
-  border: 1px solid #52c41a;
-}
+
 .login-header {
   display: flex;
   flex-direction: row;
@@ -77,6 +76,7 @@
   margin: 15px;
   cursor: pointer;
 }
+
 .button--logout:hover {
   transform: scale(1.03);
   transition: scale 0.2s;

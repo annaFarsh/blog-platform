@@ -7,12 +7,9 @@ import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
 import SingleArticle from "../pages/SingleArticle";
 import PrivateAuth from "./hoc/PrivateAuth";
-import { useEffect } from "react";
-import { checkLoginLS } from "../services/functionForWorkWithLS";
+import EditArticle from "../pages/EditArticle";
+import NotFoundPage from "../pages/NotFoundPage";
 function App() {
-  useEffect(() => {
-    checkLoginLS();
-  }, []);
   return (
     <div className="app">
       <Routes>
@@ -31,6 +28,14 @@ function App() {
             }
           ></Route>
           <Route
+            path="edit-article"
+            element={
+              <PrivateAuth>
+                <EditArticle />
+              </PrivateAuth>
+            }
+          ></Route>
+          <Route
             path="profile"
             element={
               <PrivateAuth>
@@ -38,6 +43,7 @@ function App() {
               </PrivateAuth>
             }
           ></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Route>
       </Routes>
     </div>

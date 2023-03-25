@@ -1,5 +1,5 @@
 .form--wrapper {
-  position: absolute;
+  margin: 40px auto;
   width: 320px;
   height: auto;
   top: 100px;
@@ -35,6 +35,7 @@
 }
 .input--textarea {
   min-height: 168px;
+  padding: 10px 0 0 10px;
 }
 .form__error > p {
   margin: 0;
@@ -66,7 +67,7 @@
   color: #1890ff;
   border: 1px solid #1890ff;
   border-radius: 4px;
-  margin: 0 0 6px 16px;
+  margin: 12px 0 6px 0;
 }
 
 .link--sign {
@@ -74,6 +75,9 @@
   text-align: center;
   color: #bfbfbf;
 }
-.link-sign > a {
-  color: #1890ff;
+.link--sign > a {
+  color: #1890ff !important;
+}
+.tag-text:hover {
+  cursor: default;
 }
