@@ -10,6 +10,7 @@
   font-size: 0.8rem;
   box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
   height: auto;
+  border-radius: 8px;
 }
 .content > .article {
   min-height: 80vh;
@@ -62,6 +63,7 @@
 .article > .article-path > .title-heart > .article-path__heart:hover {
   cursor: pointer;
 }
+
 .article > .article-path > .user-article {
   display: flex;
   flex-direction: row;
@@ -127,6 +129,9 @@ p {
 .user-all {
   display: flex;
   flex-direction: row;
+}
+.content > .article > .article-path {
+  width: calc(100% - 20px);
 }
 @media (max-width: 719px) {
   .article {

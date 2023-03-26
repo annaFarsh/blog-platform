@@ -81,3 +81,24 @@
 .tag-text:hover {
   cursor: default;
 }
+.form__input {
+  border-radius: 8px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 0 20px -18px;
+}
+.form__input:hover {
+  border: 2px solid lightgrey;
+  box-shadow: 0 0 20px -17px;
+}
+.form__input:active {
+  transform: scale(0.95);
+}
+.form__input:focus {
+  border: 2px solid grey;
+}
+.new-article,
+.edit-article {
+  border-radius: 8px;
+}

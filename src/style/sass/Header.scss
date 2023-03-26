@@ -81,3 +81,41 @@
   transform: scale(1.03);
   transition: scale 0.2s;
 }
+@media (max-width: 719px) {
+  .header {
+    width: 100vw;
+    justify-content: normal;
+  }
+  .button--home {
+    translate: 2px;
+    margin-right: 3px;
+    width: 80px;
+  }
+  .button--green,
+  .button--red {
+    width: 50px;
+    font-size: 0.85rem;
+    border: none;
+  }
+  .button--logout {
+    width: 80px;
+    position: absolute;
+    right: 0;
+  }
+  .header__profile {
+    width: 120px;
+    justify-content: normal;
+  }
+  .button--create {
+    width: 70px;
+  }
+  .form__button--submit {
+    width: 65vw !important;
+  }
+  .buttons {
+    width: 250px;
+  }
+  .content > .article > .article-path {
+    width: calc(100% - 20px);
+  }
+}
