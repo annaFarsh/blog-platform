@@ -42,7 +42,9 @@ function SignIn() {
               {...register("password", passwordRules)}
             />
           </label>
-          {error === 422 && <div className='error422'>Invalid Email or Password</div>}
+          {error === 422 && (
+            <div className="error422">Invalid Email or Password</div>
+          )}
           <p>
             <input
               className="button form__button form__button--submit"

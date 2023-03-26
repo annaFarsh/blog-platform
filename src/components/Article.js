@@ -6,10 +6,7 @@ import HeartBlack from "../img/HeartBlack.svg";
 import HeartRed from "../img/HeartRed.svg";
 import { useDispatch, useSelector } from "react-redux";
 import EditButtons from "../components/EditButtons";
-import {
-  addFavorite,
-  deleteFavorite,
-} from "../API/fetchRequestArticles";
+import { addFavorite, deleteFavorite } from "../API/fetchRequestArticles";
 import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 function Article({ article }) {

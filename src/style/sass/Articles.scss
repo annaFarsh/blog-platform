@@ -28,7 +28,7 @@
   box-shadow: 12px 17px 51px rgba(82, 94, 92, 0.22);
 }
 .article--preview > .article > .article-path {
-  width: calc(100% - 20px);
+  width: calc(65% - 20px);
   padding: 10px;
 }
 .article--preview > .article > .article-path > .user-article {
@@ -44,7 +44,7 @@
   flex-direction: row;
   overflow: hidden;
   justify-content: flex-end;
-  width: 35%;
+  width: calc(35% - 30px);
   margin-right: 10px;
 }
 .article--preview
@@ -85,7 +85,7 @@
   max-height: 40px;
   overflow: hidden;
   width: 65%;
-  top: 80px;
+  translate: 0;
 }
 .article--preview > .article > .article-path > .article-path__text > h1,
 h2,
