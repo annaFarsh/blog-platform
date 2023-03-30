@@ -16,11 +16,12 @@ function SingleArticle() {
   const articleWasDeleted = useSelector(
     (state) => state.articles.articleWasDeleted
   );
+  const articleEdit = useSelector((state) => state.articles.articleEdit);
   useEffect(() => {
-    if (articleWasDeleted === true) {
+    if (articleWasDeleted === true || articleEdit === true) {
       navigate(fromPage, { replace: true });
     }
-  }, [articleWasDeleted, navigate, fromPage]);
+  }, [articleWasDeleted, navigate, fromPage, articleEdit]);
   useEffect(() => {
     dispatch(getOneArticle({ slug, token }));
   }, [dispatch, slug, token, toggleFavorite]);

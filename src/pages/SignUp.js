@@ -13,15 +13,12 @@ function SignUp() {
     watch,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
   } = useForm({
     mode: "onBlur",
   });
   const onSubmit = (data) => {
     const { username, email, password } = data;
-    dispatch(registerNewUser({ username, email, password })).then(() =>
-      reset()
-    );
+    dispatch(registerNewUser({ username, email, password }));
   };
   return (
     <div className="form--wrapper">

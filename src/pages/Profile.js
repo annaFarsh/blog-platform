@@ -3,14 +3,12 @@ import { updateUser } from "../API/fetchRequestUser";
 import { useDispatch, useSelector } from "react-redux";
 import { rulesValidationForms } from "../services/rulesValidationForms";
 import { message } from "antd";
-
 function Profile() {
   const { usernameRules, passwordRules, emailRules, imageRules } =
     rulesValidationForms;
   const { value: funcValidImage, message: errorImage } = imageRules;
   const username = useSelector((state) => state.user.username);
   const email = useSelector((state) => state.user.email);
-  const image = useSelector((state) => state.user.image);
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const {
@@ -21,7 +19,7 @@ function Profile() {
     defaultValues: {
       username: username,
       email: email,
-      image: image,
+      image: "../img/UserAvatar.svg",
     },
     mode: "onBlur",
   });
@@ -41,7 +39,7 @@ function Profile() {
           <input
             className="form__input input--username"
             placeholder={username}
-            {...register("username", usernameRules)}
+            {...register("username", { ...usernameRules, required: false })}
           />
           <div className="form__error">
             {errors?.username && <p>{errors?.username?.message || "Error"}</p>}
@@ -53,7 +51,7 @@ function Profile() {
             type="email"
             className="form__input input--email"
             placeholder={email}
-            {...register("email", emailRules)}
+            {...register("email", { ...emailRules, required: false })}
           />
         </label>
         <label className="label">
@@ -61,16 +59,17 @@ function Profile() {
           <input
             type="password"
             className="form__input input--password"
-            {...register("password", passwordRules)}
+            {...register("password", { ...passwordRules, required: false })}
           />
         </label>
         <label className="label">
           Avatar image (url)
           <input
-            type="password"
+            type="text"
             className="form__input input--password"
             {...register("image", {
               validate: (value) => funcValidImage(value) === true,
+              required: false,
             })}
           />
           <div className="form__error">

@@ -13,15 +13,13 @@ function ArticlesList() {
   const loginChecked = useSelector((state) => state.articles.loginChecked);
   const currentPage = useSelector((state) => state.articles.currentPage);
   const token = useSelector((state) => state.user.token);
-  const toggleFavorite = useSelector((state) => state.articles.toggleFavorite);
-
   useEffect(() => {
     dispatch(checkLogin());
 
     dispatch(
       getArticles({ limit: 5, offset: (currentPage - 1) * 5, token: token })
     );
-  }, [dispatch, currentPage, loginChecked, token, toggleFavorite]);
+  }, [dispatch, currentPage, token, loginChecked]);
 
   return (
     <div className="articles">

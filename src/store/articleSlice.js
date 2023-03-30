@@ -24,6 +24,7 @@ const articleSlice = createSlice({
     articleWasDeleted: false,
     articleEdit: false,
     updateArticle: false,
+    articleCreated: false,
   },
   reducers: {
     setCurrentPage(state, action) {
@@ -38,8 +39,30 @@ const articleSlice = createSlice({
     deleteTag(state, action) {
       state.tags = [...state.tags.filter((tag) => tag.id !== action.payload)];
     },
-    resetError(state, action) {
+    resetError(state) {
       state.error = "null";
+    },
+    addFavoriteArticle(state, action) {
+      state.articles = [
+        ...state.articles.map((art) => {
+          if (art.slug === action.payload.slug) {
+            art.favorited = true;
+            art.favoritesCount += 1;
+          }
+          return art;
+        }),
+      ];
+    },
+    deleteFavoriteArticle(state, action, id) {
+      state.articles = [
+        ...state.articles.map((art) => {
+          if (art.slug === action.payload.slug) {
+            art.favorited = false;
+            art.favoritesCount -= 1;
+          }
+          return art;
+        }),
+      ];
     },
   },
   extraReducers: {
@@ -51,6 +74,7 @@ const articleSlice = createSlice({
       state.articleEdit = false;
       state.articleWasDeleted = false;
       state.updateArticle = false;
+      state.articleCreated = false;
       state.status = "ok";
       state.error = "null";
       state.articles = [...action.payload.articles];
@@ -83,7 +107,8 @@ const articleSlice = createSlice({
     [createArticle.fulfilled]: (state) => {
       state.status = "ok";
       state.error = "null";
-      state.articleEdit = true;
+      state.articleCreated = true;
+      state.tags = [];
     },
     [createArticle.rejected]: (state, action) => {
       state.status = "reject";
@@ -120,7 +145,7 @@ const articleSlice = createSlice({
       state.status = "loading";
       state.error = "null";
     },
-    [updateArticle.fulfilled]: (state, action) => {
+    [updateArticle.fulfilled]: (state) => {
       state.status = "ok";
       state.error = "null";
       state.updateArticle = true;
@@ -133,18 +158,24 @@ const articleSlice = createSlice({
       state.status = "loading";
       state.error = "null";
     },
-    [deleteArticle.fulfilled]: (state, action) => {
+    [deleteArticle.fulfilled]: (state) => {
       state.status = "ok";
       state.error = "null";
       state.articleWasDeleted = true;
     },
     [deleteArticle.rejected]: (state, action) => {
-      console.log(action.payload);
       state.status = "reject";
       state.error = action.payload;
     },
   },
 });
 export default articleSlice.reducer;
-export const { setTag, deleteTag, setCurrentPage, resetError } =
-  articleSlice.actions;
+export const {
+  setTag,
+  deleteTag,
+  setCurrentPage,
+  resetError,
+  addFavoriteArticle,
+  deleteFavoriteArticle,
+  changeAvatar,
+} = articleSlice.actions;

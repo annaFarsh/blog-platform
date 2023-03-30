@@ -1,5 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  addFavoriteArticle,
+  deleteFavoriteArticle,
+} from "../store/articleSlice";
 const baseURL = `https://blog.kata.academy/api`;
+
 const getArticles = createAsyncThunk(
   "articles/getArticles",
   async function ({ limit, offset, token }, { rejectWithValue }) {
@@ -14,7 +19,7 @@ const getArticles = createAsyncThunk(
       }
     );
     if (!res.ok) return rejectWithValue(res.status);
-    return await res.json();
+    if (res.ok) return await res.json();
   }
 );
 const getOneArticle = createAsyncThunk(
@@ -60,7 +65,7 @@ const createArticle = createAsyncThunk(
 );
 const addFavorite = createAsyncThunk(
   "articles/addFavorite",
-  async function ({ slug, token }, { rejectWithValue }) {
+  async function ({ slug, token }, { rejectWithValue, dispatch }) {
     const res = await fetch(
       `https://blog.kata.academy/api/articles/${slug}/favorite`,
       {
@@ -72,12 +77,12 @@ const addFavorite = createAsyncThunk(
       }
     );
     if (!res.ok) return rejectWithValue(res.status);
-    return await res.json();
+    if (res.ok) dispatch(addFavoriteArticle({ slug }));
   }
 );
 const deleteFavorite = createAsyncThunk(
   "articles/deleteFavorite",
-  async function ({ slug, token }, { rejectWithValue }) {
+  async function ({ slug, token }, { rejectWithValue, dispatch }) {
     const res = await fetch(
       `https://blog.kata.academy/api/articles/${slug}/favorite`,
       {
@@ -89,7 +94,7 @@ const deleteFavorite = createAsyncThunk(
       }
     );
     if (!res.ok) return rejectWithValue(res.status);
-    return await res.json();
+    if (res.ok) dispatch(deleteFavoriteArticle({ slug }));
   }
 );
 const updateArticle = createAsyncThunk(
